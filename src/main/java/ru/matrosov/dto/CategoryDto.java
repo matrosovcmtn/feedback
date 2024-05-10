@@ -4,19 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.matrosov.enumiration.RequestStatus;
 import ru.matrosov.model.Person;
-
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @Builder(builderClassName = "Builder")
 @Data
 @NoArgsConstructor
-public class CategoryCreationRequestDTO {
-    private Person author;
+public class CategoryDto {
     private String title;
-    private String content;
-    private LocalDate date;
-    private RequestStatus status;
+    private String pictureName;
+    private String request;
+    private Person author;
 }

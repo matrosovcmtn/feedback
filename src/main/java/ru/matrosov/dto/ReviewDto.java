@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Builder(builderClassName = "Builder")
 @Data
 @NoArgsConstructor
-public class ReviewDTO {
+public class ReviewDto {
     private String category;
     private String categoryId;
     private Person author;

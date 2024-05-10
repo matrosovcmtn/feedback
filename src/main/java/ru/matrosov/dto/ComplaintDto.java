@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.matrosov.model.Person;
 
 import java.time.LocalDate;
 
@@ -11,9 +12,12 @@ import java.time.LocalDate;
 @Builder(builderClassName = "Builder")
 @Data
 @NoArgsConstructor
-public class CategoryDTO {
-    private String title;
-    private String pictureName;
-    private String request;
+public class ComplaintDto {
     private Person author;
+    private Person target;
+    private String review;
+    private String reviewId;
+    private String content;
+    private String status;
+    private LocalDate date;
 }
