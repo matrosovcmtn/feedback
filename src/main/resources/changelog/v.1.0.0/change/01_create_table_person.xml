@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="create-table-person" author="Matrosov-DY">
+        <preConditions onFail="WARN"
+                       onFailMessage="Failed to create table person"
+                       onError="WARN"
+                       onErrorMessage="Error while creating table">
+            <not>
+                <tableExists tableName="person"/>
+            </not>
+        </preConditions>
+        <createTable tableName="person">
+            <column name="id" type="varchar(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="nickname" type="varchar(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activated" type="boolean" defaultValueBoolean="false"/>
+            <column name="activation_link" type="varchar(255)"/>
+            <column name="role" type="varchar(15)" defaultValue="user"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
