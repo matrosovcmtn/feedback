@@ -35,10 +35,10 @@ public class Review {
     private String content;
 
     @Column(name = "reliability")
-    private int reliability;
+    private float reliability;
 
     @Column(name = "users_rated_amount")
-    private String usersRatedAmount;
+    private int usersRatedAmount;
 
     @Column(name = "date")
     private LocalDate date;

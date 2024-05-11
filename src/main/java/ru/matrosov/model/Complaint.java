@@ -25,7 +25,7 @@ public class Complaint {
     @ManyToOne
     private Person author;
 
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JoinColumn(name = "target_id", referencedColumnName = "id")
     @ManyToOne
     private Person target;
 
