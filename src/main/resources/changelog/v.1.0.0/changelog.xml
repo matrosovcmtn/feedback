@@ -5,4 +5,10 @@
         logicalFilePath="changelog/v.1.0.0/changelog.xml">
     <include file="change/01_create_table_person.xml" relativeToChangelogFile="true"/>
     <include file="change/02_create_table_category.xml" relativeToChangelogFile="true"/>
+    <include file="change/03_create_table_complaint.xml" relativeToChangelogFile="true"/>
+    <include file="change/04_create_table_category_creation_request.xml" relativeToChangelogFile="true"/>
+    <include file="change/05_create_table_review_comment.xml" relativeToChangelogFile="true"/>
+    <include file="change/06_create_table_review.xml" relativeToChangelogFile="true"/>
+    <include file="change/07_create_table_review_rate.xml" relativeToChangelogFile="true"/>
+    <include file="change/08_create_table_token.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
