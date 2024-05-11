@@ -2,31 +2,27 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <changeSet id="create_table_person" author="Matrosov-DY">
+    <changeSet id="create_table_token" author="Matrosov-DY">
         <preConditions onFail="WARN"
-                       onFailMessage="Failed to create table person"
+                       onFailMessage="Failed to create table token"
                        onError="WARN"
-                       onErrorMessage="Error while creating table person">
+                       onErrorMessage="Error while creating table token">
             <not>
-                <tableExists tableName="person"/>
+                <tableExists tableName="token"/>
             </not>
         </preConditions>
-        <createTable tableName="person">
+        <createTable tableName="token">
             <column name="id" type="varchar(255)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="false" unique="true"/>
+            <column name="person_id" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-            <column name="nickname" type="varchar(255)">
-                <constraints unique="true"/>
-            </column>
-            <column name="password" type="varchar(255)">
+            <column name="refresh_token" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="activated" type="boolean" defaultValueBoolean="false"/>
-            <column name="activation_link" type="varchar(255)"/>
-            <column name="role" type="varchar(15)" defaultValue="user"/>
+            <column name="authentication_link" type="varchar(255)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

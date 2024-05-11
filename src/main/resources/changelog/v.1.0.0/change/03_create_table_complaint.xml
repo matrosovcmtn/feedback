@@ -2,25 +2,27 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <changeSet id="create_table_category" author="Matrosov-DY">
+    <changeSet id="create_table_complaint" author="Matrosov-DY">
         <preConditions onFail="WARN"
-                       onFailMessage="Failed to create table category"
+                       onFailMessage="Failed to create table complaint"
                        onError="WARN"
-                       onErrorMessage="Error while creating table category">
+                       onErrorMessage="Error while creating table complaint">
             <not>
-                <tableExists tableName="category"/>
+                <tableExists tableName="complaint"/>
             </not>
         </preConditions>
-        <createTable tableName="category">
+        <createTable tableName="complaint">
             <column name="id" type="varchar(255)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="title" type="varchar(255)">
+            <column name="content" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="picture_name" type="varchar(255)"/>
-            <column name="request" type="varchar(255)"/>
             <column name="author_id" type="varchar(255)"/>
+            <column name="target_id" type="varchar(255)"/>
+            <column name="review_id" type="varchar(255)"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="date" type="date"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

@@ -2,24 +2,23 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <changeSet id="create_table_category" author="Matrosov-DY">
+    <changeSet id="create_table_review_rate" author="Matrosov-DY">
         <preConditions onFail="WARN"
-                       onFailMessage="Failed to create table category"
+                       onFailMessage="Failed to create table review_rate"
                        onError="WARN"
-                       onErrorMessage="Error while creating table category">
+                       onErrorMessage="Error while creating table review_rate">
             <not>
-                <tableExists tableName="category"/>
+                <tableExists tableName="review_rate"/>
             </not>
         </preConditions>
-        <createTable tableName="category">
+        <createTable tableName="review_rate">
             <column name="id" type="varchar(255)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="title" type="varchar(255)">
+            <column name="value" type="float">
                 <constraints nullable="false"/>
             </column>
-            <column name="picture_name" type="varchar(255)"/>
-            <column name="request" type="varchar(255)"/>
+            <column name="review_id" type="varchar(255)"/>
             <column name="author_id" type="varchar(255)"/>
         </createTable>
     </changeSet>
