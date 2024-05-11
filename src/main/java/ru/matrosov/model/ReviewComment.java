@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "review_comment_model")
+@Table(name = "review_comment")
 public class ReviewComment {
     @Id
     @Column(name = "id")
