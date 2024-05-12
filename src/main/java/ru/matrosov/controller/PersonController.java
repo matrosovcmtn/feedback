@@ -5,50 +5,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.matrosov.dto.PersonDto;
 import ru.matrosov.mapper.PersonToDtoMapper;
-import ru.matrosov.model.Person;
 import ru.matrosov.service.PersonService;
 
 import java.util.List;
 
-@RestController
 @AllArgsConstructor
+@RestController
 @RequestMapping("/people")
-//@CrossOrigin(origins = "http://localhost:3000")
 public class PersonController {
     private final PersonService personService;
     private final PersonToDtoMapper personMapper;
 
-    @PostMapping("/findAll")
-    public List<PersonDto> findAll() {
-        return personService.findAll().stream().map(personMapper::toDto).toList();
+    @PostMapping("/getAll")
+    public ResponseEntity<List<PersonDto>> getAll() {
+        var result = personService.getAll().stream().map(personMapper::toDto).toList();
+        return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/find/{id}")
-    public PersonDto findOne(@PathVariable("id") String id) {
-        return personMapper.toDto(personService.findById(id));
+    @PostMapping("/get/{id}")
+    public ResponseEntity<PersonDto> getOne(@PathVariable("id") String id) {
+        var result = personMapper.toDto(personService.getById(id));
+        return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create") // todo delete method, when authorization will be done
     public ResponseEntity<PersonDto> create(@RequestBody PersonDto personDto) {
-        var created = personService.create(personMapper.fromDto(personDto));
-        return ResponseEntity.ok(personMapper.toDto(created));
+        var result = personMapper.toDto(personService.create(personMapper.fromDto(personDto)));
+        return ResponseEntity.ok(result);
     }
 
-    /**
-     * Обновление информации о пользователе
-     */
-    @PutMapping
-    public Person update(@RequestBody Person person) {
-        return personService.update(person);
-    }
-
-    /**
-     * Удаление пользователя
-     * @param id
-     */
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
-        personService.delete(id);
+    @PostMapping("/ban/{id}")
+    public ResponseEntity<PersonDto> delete(@PathVariable("id") int id) {
+        var result = personMapper.toDto(personService.banPerson(id));
+        return ResponseEntity.ok(result);
     }
 
 }
