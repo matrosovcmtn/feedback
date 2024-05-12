@@ -2,7 +2,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd"
-        logicalFilePath="changelog/v.1.0.0/changelog.xml">
+        logicalFilePath="db/changelog/v.1.0.0/changelog.xml">
     <include file="change/01_create_table_person.xml" relativeToChangelogFile="true"/>
     <include file="change/02_create_table_category.xml" relativeToChangelogFile="true"/>
     <include file="change/03_create_table_complaint.xml" relativeToChangelogFile="true"/>
