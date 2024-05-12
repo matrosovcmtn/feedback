@@ -17,7 +17,7 @@ public class Review {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", type = org.hibernate.id.uuid.UuidGenerator.class)
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")

@@ -1,7 +1,9 @@
 package ru.matrosov.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import ru.matrosov.enumiration.RequestStatus;
 
@@ -20,7 +22,7 @@ public class CategoryCreationRequest {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", type = org.hibernate.id.uuid.UuidGenerator.class)
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     @JoinColumn(name = "author_id", referencedColumnName = "id")
