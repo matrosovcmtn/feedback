@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="01_drop_table_person" author="Matrosov-DY">
+        <preConditions onFail="MARK_RAN"
+                       onFailMessage="Table person does not exist. No need to drop it."
+                       onError="WARN"
+                       onErrorMessage="Error while dropping table person">
+            <tableExists tableName="person"/>
+        </preConditions>
+        <dropTable tableName="person"/>
+    </changeSet>
+</databaseChangeLog>
