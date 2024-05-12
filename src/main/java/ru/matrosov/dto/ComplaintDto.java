@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class ComplaintDto {
+    private String id;
     private Person author;
     private Person target;
     private String review;

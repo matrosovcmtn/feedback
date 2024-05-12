@@ -4,16 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
+import ru.matrosov.enumiration.Role;
 
 @AllArgsConstructor
 @Builder(builderClassName = "Builder")
 @Data
 @NoArgsConstructor
 public class PersonDto {
-    private String name;
+    private String id;
     private String email;
-    private String tel;
-    private LocalDate dateOfBirth;
+    private String nickname;
+    private String password;
+    private boolean activated;
+    private String activationLink;
+    private Role role;
 }

@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class CategoryCreationRequestDto {
+    private String id;
     private Person author;
     private String title;
     private String content;

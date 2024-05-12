@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class ReviewDto {
+    private String id;
     private String category;
     private String categoryId;
     private Person author;

@@ -11,6 +11,7 @@ import ru.matrosov.model.Person;
 @Data
 @NoArgsConstructor
 public class ReviewRateDto {
+    private String id;
     private String review;
     private String value;
     private Person author;

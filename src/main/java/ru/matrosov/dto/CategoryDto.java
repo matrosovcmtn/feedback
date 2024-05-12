@@ -11,6 +11,7 @@ import ru.matrosov.model.Person;
 @Data
 @NoArgsConstructor
 public class CategoryDto {
+    private String id;
     private String title;
     private String pictureName;
     private String request;
