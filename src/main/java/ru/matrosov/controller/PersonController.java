@@ -22,7 +22,7 @@ public class PersonController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/get/{id}")
+    @PostMapping("/getOne/{id}")
     public ResponseEntity<PersonDto> getOne(@PathVariable("id") String id) {
         var result = personMapper.toDto(personService.getById(id));
         return ResponseEntity.ok(result);
@@ -35,7 +35,7 @@ public class PersonController {
     }
 
     @PostMapping("/ban/{id}")
-    public ResponseEntity<PersonDto> delete(@PathVariable("id") int id) {
+    public ResponseEntity<PersonDto> delete(@PathVariable("id") String id) {
         var result = personMapper.toDto(personService.banPerson(id));
         return ResponseEntity.ok(result);
     }

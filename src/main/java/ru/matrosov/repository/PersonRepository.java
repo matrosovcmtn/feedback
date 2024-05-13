@@ -7,6 +7,5 @@ import ru.matrosov.model.Person;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Integer> {
-    Optional<Person> findById(String id);
+public interface PersonRepository extends JpaRepository<Person, String> {
 }
