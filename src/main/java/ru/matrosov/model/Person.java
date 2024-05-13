@@ -35,5 +35,6 @@ public class Person {
     private String activationLink;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 }
