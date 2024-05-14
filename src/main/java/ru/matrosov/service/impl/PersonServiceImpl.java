@@ -31,7 +31,7 @@ public class PersonServiceImpl implements PersonService {
         try {
             var optionalPerson = personRepository.findById(id);
             if (optionalPerson.isEmpty()) {
-                throw new RuntimeException("Пользователь не найден.");
+                throw new RuntimeException("Пользователь с id=[%s] не найден.".formatted(id));
             }
             result = optionalPerson.get();
         } catch (Exception e) {
@@ -59,6 +59,6 @@ public class PersonServiceImpl implements PersonService {
             foundPerson.setActivated(false);
             return personRepository.save(foundPerson);
         }
-        throw new RuntimeException("Во время блокировки пользователя произошла непревиденная ошибка");
+        throw new RuntimeException("Во время блокировки пользователя с id=[%s] произошла непревиденная ошибка".formatted(id));
     }
 }

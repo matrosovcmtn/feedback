@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
         try {
             var optionalCategory = categoryRepository.findById(id);
             if (optionalCategory.isEmpty()) {
-                throw new RuntimeException("Категория не найдена.");
+                throw new RuntimeException("Категория c id=[%s] не найдена.".formatted(id));
             }
             result = optionalCategory.get();
         } catch (Exception e) {
