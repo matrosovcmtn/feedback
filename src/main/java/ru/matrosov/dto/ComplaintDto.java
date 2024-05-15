@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.matrosov.model.Person;
 
 import java.time.LocalDate;
 
@@ -14,9 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ComplaintDto {
     private String id;
-    private Person author;
-    private Person target;
-    private String review;
+    private String authorId;
+    private String targetId;
     private String reviewId;
     private String content;
     private String status;

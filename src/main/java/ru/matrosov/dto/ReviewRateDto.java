@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.matrosov.model.Person;
 
 @AllArgsConstructor
 @Builder(builderClassName = "Builder")
@@ -12,7 +11,7 @@ import ru.matrosov.model.Person;
 @NoArgsConstructor
 public class ReviewRateDto {
     private String id;
-    private String review;
+    private String reviewId;
     private String value;
-    private Person author;
+    private String authorId;
 }

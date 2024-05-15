@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.matrosov.model.Person;
 
 @AllArgsConstructor
 @Builder(builderClassName = "Builder")
@@ -12,8 +11,8 @@ import ru.matrosov.model.Person;
 @NoArgsConstructor
 public class ReviewCommentDto {
     private String id;
-    private String review;
+    private String reviewId;
     private String content;
-    private Person author;
+    private String authorId;
     private String date;
 }

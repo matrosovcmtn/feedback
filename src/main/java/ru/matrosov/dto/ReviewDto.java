@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.matrosov.model.Person;
 
 import java.time.LocalDate;
 
@@ -14,13 +13,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReviewDto {
     private String id;
-    private String category;
     private String categoryId;
-    private Person author;
+    private String authorId;
     private String title;
     private String content;
-    private String reliability;
-    private String usersRatedAmount;
+    private float reliability;
+    private int usersRatedAmount;
     private LocalDate date;
     private String pictureName;
 }
