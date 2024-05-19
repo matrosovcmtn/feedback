@@ -12,18 +12,24 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/api/review")
 public class ReviewController {
     private final ReviewService reviewService;
     private final ReviewToDtoMapper reviewMapper;
 
-    @PostMapping("/getAll")
+    @GetMapping()
     public ResponseEntity<List<ReviewDto>> getAll() {
         var result = reviewService.getAll().stream().map(reviewMapper::toDto).toList();
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/getUserReviews/{id}")
+    @GetMapping("/{id}")
+    public ResponseEntity<ReviewDto> getOne(@PathVariable("id") String id) {
+        var result = reviewMapper.toDto(reviewService.getOne(id));
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/by_user/{id}")
     public ResponseEntity<List<ReviewDto>> getUserRequests(@PathVariable("id") String id) {
         var result = reviewMapper.toDto(reviewService.getUserReviews(id));
         return ResponseEntity.ok(result);
@@ -35,13 +41,7 @@ public class ReviewController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<ReviewDto> update(@RequestBody Review review) {
-        var result = reviewMapper.toDto(reviewService.update(review));
-        return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/remove/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         var result = reviewService.delete(id);
         return ResponseEntity.ok(result);

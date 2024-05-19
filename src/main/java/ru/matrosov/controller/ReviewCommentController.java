@@ -16,24 +16,24 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/reviewComment")
+@RequestMapping("/api/review_comment")
 public class ReviewCommentController {
     private final ReviewCommentService reviewCommentService;
     private final ReviewCommentToDtoMapper reviewCommentMapper;
 
-    @PostMapping("/getAllByReview/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<ReviewCommentDto>> getAllByReview(@PathVariable("id") String id) {
         var result = reviewCommentMapper.toDto(reviewCommentService.getAllByReview(id));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ReviewCommentDto> create(@RequestBody ReviewCommentDto reviewCommentDto) {
         var result = reviewCommentMapper.toDto(reviewCommentService.create(reviewCommentMapper.fromDto(reviewCommentDto)));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         var result = reviewCommentService.delete(id);
         return ResponseEntity.ok(result);

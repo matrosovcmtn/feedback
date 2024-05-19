@@ -12,36 +12,36 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/category")
 public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryToDtoMapper categoryMapper;
 
-    @PostMapping("/getAll")
+    @GetMapping()
     public ResponseEntity<List<CategoryDto>> getAll() {
         var result = categoryService.getAll().stream().map(categoryMapper::toDto).toList();
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/getOne/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> getOne(@PathVariable("id") String id) {
         var result = categoryMapper.toDto(categoryService.getById(id));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<CategoryDto> create(@RequestBody CategoryDto categoryDto) {
         var result = categoryMapper.toDto(categoryService.create(categoryMapper.fromDto(categoryDto)));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     public ResponseEntity<CategoryDto> update(@RequestBody Category category) {
         var result = categoryMapper.toDto(categoryService.update(category));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         var result = categoryService.delete(id);
         return ResponseEntity.ok(result);

@@ -9,28 +9,24 @@ import ru.matrosov.service.PersonService;
 
 import java.util.List;
 
+// todo create method, when authorization will be done
+
 @AllArgsConstructor
 @RestController
-@RequestMapping("/people")
+@RequestMapping("/api/user")
 public class PersonController {
     private final PersonService personService;
     private final PersonToDtoMapper personMapper;
 
-    @PostMapping("/getAll")
+    @GetMapping()
     public ResponseEntity<List<PersonDto>> getAll() {
         var result = personService.getAll().stream().map(personMapper::toDto).toList();
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/getOne/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PersonDto> getOne(@PathVariable("id") String id) {
         var result = personMapper.toDto(personService.getById(id));
-        return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/create") // todo delete method, when authorization will be done
-    public ResponseEntity<PersonDto> create(@RequestBody PersonDto personDto) {
-        var result = personMapper.toDto(personService.create(personMapper.fromDto(personDto)));
         return ResponseEntity.ok(result);
     }
 

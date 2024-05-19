@@ -12,36 +12,36 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/complaint")
+@RequestMapping("/api/complaint")
 public class ComplaintController {
     private final ComplaintService complaintService;
     private final ComplaintToDtoMapper complaintMapper;
 
-    @PostMapping("/getAll")
+    @GetMapping()
     public ResponseEntity<List<ComplaintDto>> getAll() {
         var result = complaintService.getAll().stream().map(complaintMapper::toDto).toList();
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/getUsersComplaints/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<ComplaintDto>> getUsersComplaints(@PathVariable("id") String id) {
         var result = complaintMapper.toDto(complaintService.getUsersComplaints(id));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ComplaintDto> create(@RequestBody ComplaintDto complaintDto) {
         var result = complaintMapper.toDto(complaintService.create(complaintMapper.fromDto(complaintDto)));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     public ResponseEntity<ComplaintDto> update(@RequestBody Complaint complaint) {
         var result = complaintMapper.toDto(complaintService.update(complaint));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         var result = complaintService.delete(id);
         return ResponseEntity.ok(result);
