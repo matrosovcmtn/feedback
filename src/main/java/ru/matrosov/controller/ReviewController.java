@@ -35,13 +35,13 @@ public class ReviewController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ReviewDto> create(@RequestBody ReviewDto reviewDto) {
         var result = reviewMapper.toDto(reviewService.create(reviewMapper.fromDto(reviewDto)));
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         var result = reviewService.delete(id);
         return ResponseEntity.ok(result);

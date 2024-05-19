@@ -24,7 +24,7 @@ public class Category {
     @Column(name = "picture_name")
     private String pictureName;
 
-    @JoinColumn(name = "request_id", referencedColumnName = "id")
+    @JoinColumn(name = "request", referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private CategoryCreationRequest request;
 
