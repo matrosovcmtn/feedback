@@ -12,7 +12,6 @@ import ru.matrosov.service.ReviewRateService;
 public class ReviewRateServiceImpl implements ReviewRateService {
     private final ReviewRateRepository repository;
 
-    @Transactional
     @Override
     public ReviewRate getOneByUserAndReview(String authorId, String reviewId) {
         var reviewRate = repository.findByAuthorIdAndReviewId(authorId, reviewId);

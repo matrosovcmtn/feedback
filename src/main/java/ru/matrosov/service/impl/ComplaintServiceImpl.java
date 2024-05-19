@@ -14,7 +14,6 @@ import java.util.List;
 public class ComplaintServiceImpl implements ComplaintService {
     private final ComplaintRepository repository;
 
-    @Transactional
     @Override
     public List<Complaint> getAll() {
         var foundComplaints = repository.findAll();
@@ -24,7 +23,6 @@ public class ComplaintServiceImpl implements ComplaintService {
         return foundComplaints;
     }
 
-    @Transactional
     @Override
     public List<Complaint> getUsersComplaints(String authorId) {
         var usersComplaint = repository.findAllByAuthorId(authorId);

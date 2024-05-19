@@ -14,7 +14,6 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
 
-    @Transactional
     @Override
     public List<Person> getAll() {
         var foundPeople = personRepository.findAll();
@@ -24,7 +23,6 @@ public class PersonServiceImpl implements PersonService {
         return foundPeople;
     }
 
-    @Transactional
     @Override
     public Person getById(String id) {
         var result = new Person();

@@ -3,6 +3,7 @@ package ru.matrosov.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.matrosov.model.Category;
 import ru.matrosov.model.Review;
 import ru.matrosov.repository.ReviewRepository;
 import ru.matrosov.service.ReviewService;
@@ -14,7 +15,6 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
 
-    @Transactional
     @Override
     public List<Review> getAll() {
         var foundReviews = repository.findAll();
@@ -24,7 +24,21 @@ public class ReviewServiceImpl implements ReviewService {
         return foundReviews;
     }
 
-    @Transactional
+    @Override
+    public Review getOne(String id) {
+        var result = new Review();
+        try {
+            var optionalReview = repository.findById(id);
+            if (optionalReview.isEmpty()) {
+                throw new RuntimeException("Отзыв c id=[%s] не найден.".formatted(id));
+            }
+            result = optionalReview.get();
+        } catch (Exception e) {
+            throw new RuntimeException("Не смогли найти отзыв с id=[%s]. %s".formatted(id, e));
+        }
+        return result;
+    }
+
     @Override
     public List<Review> getUserReviews(String authorId) {
         var usersReview = repository.findAllByAuthorId(authorId);
@@ -41,16 +55,6 @@ public class ReviewServiceImpl implements ReviewService {
             return repository.save(review);
         } catch (Exception e) {
             throw new RuntimeException("Во время сохранения отзыва с id=[%s] в таблицу произошла ошибка: %s".formatted(review.getId(), e));
-        }
-    }
-
-    @Transactional
-    @Override
-    public Review update(Review reviewToUpdate) {
-        try {
-            return repository.save(reviewToUpdate);
-        } catch (Exception e) {
-            throw new RuntimeException("Во время обновления отзыва с id=[%s] произошла ошибка: %s".formatted(reviewToUpdate.getId(), e));
         }
     }
 

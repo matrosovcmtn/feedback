@@ -14,7 +14,6 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
-    @Transactional
     @Override
     public List<Category> getAll() {
         var foundCategories = categoryRepository.findAll();
@@ -24,7 +23,6 @@ public class CategoryServiceImpl implements CategoryService {
         return foundCategories;
     }
 
-    @Transactional
     @Override
     public Category getById(String id) {
         var result = new Category();

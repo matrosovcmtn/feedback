@@ -11,7 +11,7 @@ public interface ReviewService {
 
     Review create(Review model);
 
-    Review update(Review model);
-
     Boolean delete(String id);
+
+    Review getOne(String id);
 }

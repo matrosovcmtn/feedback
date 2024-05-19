@@ -14,7 +14,6 @@ import java.util.List;
 public class CategoryCreationRequestServiceImpl implements CategoryCreationRequestService {
     private final CategoryCreationRequestRepository repository;
 
-    @Transactional
     @Override
     public List<CategoryCreationRequest> getAll() {
         var foundRequests = repository.findAll();
@@ -24,7 +23,6 @@ public class CategoryCreationRequestServiceImpl implements CategoryCreationReque
         return foundRequests;
     }
 
-    @Transactional
     @Override
     public List<CategoryCreationRequest> getUserRequests(String authorId) {
         var usersRequest = repository.findAllByAuthorId(authorId);

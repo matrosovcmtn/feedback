@@ -14,7 +14,6 @@ import java.util.List;
 public class ReviewCommentServiceImpl implements ReviewCommentService {
     private final ReviewCommentRepository repository;
 
-    @Transactional
     @Override
     public List<ReviewComment> getAllByReview(String reviewId) {
         var foundReviewComments = repository.findAllByReviewId(reviewId);
