@@ -31,7 +31,7 @@ public class PersonController {
     }
 
     @PostMapping("/ban/{id}")
-    public ResponseEntity<PersonDto> delete(@PathVariable("id") String id) {
+    public ResponseEntity<PersonDto> ban(@PathVariable("id") String id) {
         var result = personMapper.toDto(personService.banPerson(id));
         return ResponseEntity.ok(result);
     }
