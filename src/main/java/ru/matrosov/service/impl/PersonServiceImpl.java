@@ -1,6 +1,7 @@
 package ru.matrosov.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.matrosov.model.Person;
@@ -8,11 +9,13 @@ import ru.matrosov.repository.PersonRepository;
 import ru.matrosov.service.PersonService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<Person> getAll() {
@@ -41,11 +44,19 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     @Override
     public Person create(Person person) {
+        var personToCreate = new Person();
+        var savedPerson = new Person();
         try {
-            return personRepository.save(person);
+            personToCreate.setNickname(person.getNickname());
+            personToCreate.setEmail(person.getEmail());
+            personToCreate.setPassword(passwordEncoder.encode(person.getPassword()));
+            personToCreate.setNickname(person.getNickname());
+            personToCreate.setRole(person.getRole());
+            savedPerson = personRepository.save(personToCreate);
         } catch (Exception e) {
-            throw new RuntimeException("Во время сохранения пользователя с id=[%s] в таблицу произошла ошибка: %s".formatted(person.getId(), e));
+            throw new RuntimeException("Во время сохранения пользователя возникла ошибка: %s".formatted(e));
         }
+        return savedPerson;
     }
 
     @Transactional
@@ -58,5 +69,33 @@ public class PersonServiceImpl implements PersonService {
             return personRepository.save(foundPerson);
         }
         throw new RuntimeException("Во время блокировки пользователя с id=[%s] произошла непревиденная ошибка".formatted(id));
+    }
+
+    @Override
+    public Optional<Person> findByUsername(String nickname) {
+        try {
+            var optionalPerson = personRepository.findByEmail(nickname);
+            if (optionalPerson.isEmpty()) {
+                throw new RuntimeException("Пользователь с nickname=[%s] не найден.".formatted(nickname));
+            }
+            return optionalPerson;
+        } catch (Exception e) {
+            throw new RuntimeException("Не смогли найти пользователя с nickname=[%s]. %s".formatted(nickname, e));
+        }
+    }
+
+    @Override
+    public Person getByEmail(String email) {
+        var result = new Person();
+        try {
+            var optionalPerson = personRepository.findByEmail(email);
+            if (optionalPerson.isEmpty()) {
+                throw new RuntimeException("Пользователь с email=[%s] не найден.".formatted(email));
+            }
+            result = optionalPerson.get();
+        } catch (Exception e) {
+            throw new RuntimeException("Не смогли найти пользователя с email=[%s]. %s".formatted(email, e));
+        }
+        return result;
     }
 }
